@@ -3,7 +3,7 @@
     "target": "es2020",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src/",
+    "rootDir": "./src",
     "removeComments": true,
     "strict": true,
     "noImplicitAny": true,
@@ -22,10 +22,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "typeRoots": [
-      "./src/types"
-    ]
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "src"

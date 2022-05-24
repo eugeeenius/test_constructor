@@ -1,14 +1,26 @@
-require('dotenv').config();
-import express, { Application } from 'express';
-import sequelize from './db';
+import express, { Application, json } from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import { init } from './mysql.connector';
+import { errorMiddleware } from './middlewares/error.middleware';
+import router from './routes';
+
+dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT;
+init();
 
-const start = async () => {
+app.use(errorMiddleware);
+app.use(cors());
+app.use(cookieParser());
+app.use(json());
+app.use(router);
+
+const start = () => {
   try {
-    await sequelize.authenticate();
-    app.listen(PORT, () => console.log('start'));
+    app.listen(PORT, () => console.log(`server started on port ${PORT}`));
   } catch(e) {
     console.error(e);
   }
